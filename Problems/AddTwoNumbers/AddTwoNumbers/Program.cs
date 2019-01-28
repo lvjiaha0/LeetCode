@@ -28,39 +28,115 @@ namespace AddTwoNumbers
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ListNode l1 = new Program().ConstructList(new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 });
+
+            ListNode l2 = new Program().ConstructList(new int[] { 5, 6, 4 });
+
+
+            ListNode res = new Program().AddTwoNumbers(l1, l2);
+            ListNode head = res;
+
+            Console.ReadKey();
+        }
+
+        public ListNode ConstructList(int[] arr)
+        {
+            ListNode head = new ListNode(arr[0]);
+            ListNode res = head;
+            for (int i = 1; i <= arr.Length - 1; i++)
+            {
+                head.next = new ListNode(arr[i]);
+                head = head.next;
+            }
+
+            return res;
         }
 
         public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
         {
-            ListNode headNode1 = l1;
-            ListNode headNode2 = l2;
-        }
+            ListNode l1Re = Revert(l1);
+            ListNode l2Re = Revert(l2);
+            long val1 = Convert2Number(l1Re);
+            long val2 = Convert2Number(l2Re);
+            long resVal = val1 + val2;
 
-        public ListNode Revert(ListNode node, ListNode currentNode)
-        {
-            ListNode headNode = node;
-            ListNode preNode = headNode.next;
-            ListNode newNode = preNode.next;
-            while (newNode != null && Put(headNode, preNode, newNode))
+            long[] resArr = DigitArr(resVal);
+            ListNode head = new ListNode((int)resArr[0]);
+            ListNode res = head;
+            for (int i = 1; i <= resArr.Length - 1; i++)
             {
-                preNode
+                head.next = new ListNode((int)resArr[i]);
+                head = head.next;
             }
 
+            return Revert(res);
         }
 
-        public bool Put(ListNode headNode, ListNode preNode, ListNode newNode)
+        public ListNode Revert(ListNode node)
+        {
+            ListNode headNode = node;
+            ListNode res = node;
+            if (headNode.next != null)
+            {
+                ListNode preNode = headNode.next;
+                while (Put(headNode, preNode))
+                {
+                    if (preNode.next == null)
+                    {
+                        break;
+                    }
+                }
+                res = res.next;
+                headNode.next = null;
+                preNode.next = headNode;
+            }
+
+            return res;
+        }
+
+        public long Convert2Number(ListNode node)
+        {
+            long res = 0;
+            while (node != null)
+            {
+                res += node.val;
+                if (node.next != null)
+                {
+                    res *= 10;
+                }
+                node = node.next;
+            }
+
+            return res;
+        }
+
+        public long[] DigitArr(long n)
+        {
+            if (n == 0) return new long[1] { 0 };
+
+            int length = n.ToString().Length;
+            var digits = new long[length];
+
+            for (; n != 0; n /= 10)
+            {
+                digits[length - 1] = n % 10;
+                length -= 1;
+            }
+
+            return digits;
+        }
+
+        public bool Put(ListNode headNode, ListNode preNode)
         {
             bool res = false;
-            ListNode deletedNode = DeleteNext(preNode);
-            if (deletedNode != null)
+            ListNode popedNode = PopNext(preNode);
+            if (popedNode != null)
             {
-                InsertAfterHead(headNode, deletedNode);
+                InsertAfterHead(headNode, popedNode);
                 res = true;
             }
             return res;
         }
-
 
         public void InsertAfterHead(ListNode headNode, ListNode newNode)
         {
@@ -69,16 +145,16 @@ namespace AddTwoNumbers
             newNode.next = nextNode;
         }
 
-        public ListNode DeleteNext(ListNode preNode)
+        public ListNode PopNext(ListNode preNode)
         {
-            ListNode deletedNode = preNode.next;
-            if (deletedNode != null)
+            ListNode popedNode = preNode.next;
+            if (popedNode != null)
             {
-                ListNode nextNode = deletedNode.next;
+                ListNode nextNode = popedNode.next;
                 preNode.next = nextNode;
-                deletedNode.next = null;
+                popedNode.next = null;
             }
-            return deletedNode;
+            return popedNode;
         }
     }
 
