@@ -26,18 +26,18 @@ namespace AddTwoNumbers
 
     class Program
     {
-        static void Main(string[] args)
-        {
-            ListNode l1 = new Program().ConstructList(new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 });
+        //static void Main(string[] args)
+        //{
+        //    ListNode l1 = new Program().ConstructList(new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 });
 
-            ListNode l2 = new Program().ConstructList(new int[] { 5, 6, 4 });
+        //    ListNode l2 = new Program().ConstructList(new int[] { 5, 6, 4 });
 
 
-            ListNode res = new Program().AddTwoNumbers(l1, l2);
-            ListNode head = res;
+        //    ListNode res = new Program().AddTwoNumbers(l1, l2);
+        //    ListNode head = res;
 
-            Console.ReadKey();
-        }
+        //    Console.ReadKey();
+        //}
 
         public ListNode ConstructList(int[] arr)
         {
