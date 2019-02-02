@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindMedianSortedArrays", "FindMedianSortedArrays\FindMedianSortedArrays.csproj", "{73EDFA66-544B-4621-A11C-A8855B089839}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73EDFA66-544B-4621-A11C-A8855B089839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73EDFA66-544B-4621-A11C-A8855B089839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73EDFA66-544B-4621-A11C-A8855B089839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73EDFA66-544B-4621-A11C-A8855B089839}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8A5909C5-AC1B-41D1-BDAA-072B71E968D5}
+	EndGlobalSection
+EndGlobal
