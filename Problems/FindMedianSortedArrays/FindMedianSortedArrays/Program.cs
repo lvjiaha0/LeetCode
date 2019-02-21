@@ -29,6 +29,8 @@ namespace FindMedianSortedArrays
         {
             Debug.Assert(FindMedianSortedArrays(new int[] { 1, 3 }, new int[] { 2 }) == 2.0);
             Debug.Assert(FindMedianSortedArrays(new int[] { 1, 2 }, new int[] { 3, 4 }) == 2.5);
+            Debug.Assert(FindMedianSortedArrays(new int[] { 2 }, new int[] { }) == 2.0);
+            Debug.Assert(FindMedianSortedArrays(new int[] { 1000001 }, new int[] { 1000000 }) == 1000000.5);
             Console.WriteLine("Hello World!");
         }
 
@@ -39,60 +41,67 @@ namespace FindMedianSortedArrays
 
             //总数为奇数
             bool isOdd = (length1 + length2) % 2 != 0;
-            int resIndex = (length1 + length2) / 2;
-            int tempIndex = 0;
-            double resVal = 0;
+            double resIndex = (length1 + length2) / 2.0;
+            int tempIndex = -1;
+            int[] combinedArray = new int[(int)(resIndex + 1)];
 
             int curr1 = 0;
             int curr2 = 0;
-            bool smallInNums1 = true;
+
             while (true)
             {
-                while (smallInNums1)
-                {
-                    for (int i = curr1; i < nums1.Length - 1; i++)
-                    {
-                        if (nums1[i] <= nums2[curr2])
-                        {
-                            resVal = nums1[i];
-                        }
-                        else
-                        {
-                            smallInNums1 = false;
-                            break;
-                        }
-                    }
-                }
-
-                while (!smallInNums1)
-                {
-                    for (int i = curr2; i < nums2.Length - 1; i++)
-                    {
-                        if (nums2[i] <= nums1[curr1])
-                        {
-                            resVal = nums2[i];
-                        }
-                        else
-                        {
-                            smallInNums1 = true;
-                            break;
-                        }
-                    }
-                }
-
                 tempIndex += 1;
-                if (tempIndex == resIndex)
+                if (tempIndex > resIndex)
                 {
-                    if (isOdd)
-                    {
-                        return resVal;
-                    }
-                    else
-                    {
-                        int nextVal = smallInNums1 ? nums1[curr1 + 1] : nums2[curr2 + 1];
-                        return (resVal + nextVal) / 2;
-                    }
+                    break;
                 }
+
+                bool smallInNums1 = false;
+                if (length1 == 0)
+                {
+                    smallInNums1 = false;
+                }
+                else if (length2 == 0)
+                {
+                    smallInNums1 = true;
+                }
+                else if (curr1 >= length1)
+                {
+                    smallInNums1 = false;
+                }
+                else if (curr2 >= length2)
+                {
+                    smallInNums1 = true;
+                }
+                else if (nums1[curr1] <= nums2[curr2])
+                {
+                    smallInNums1 = true;
+                }
+
+                if (smallInNums1)
+                {
+                    combinedArray[tempIndex] = nums1[curr1];
+                    curr1 += 1;
+                }
+                else
+                {
+                    combinedArray[tempIndex] = nums2[curr2];
+                    curr2 += 1;
+                }
+
+            }
+
+            if (isOdd)
+            {
+                double res = combinedArray[(int)Math.Ceiling(resIndex - 1)];
+                return res;
+            }
+            else
+            {
+                int pre = combinedArray[(int)resIndex - 1];
+                int last = combinedArray[(int)resIndex];
+                double res = (pre + last) / 2.0;
+                return res;
             }
         }
     }
