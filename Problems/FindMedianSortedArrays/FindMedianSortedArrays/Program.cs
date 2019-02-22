@@ -93,7 +93,6 @@ namespace FindMedianSortedArrays
                     combinedArray[tempIndex] = nums2[curr2];
                     curr2 += 1;
                 }
-
             }
 
             if (isOdd)//如果总数为奇数
