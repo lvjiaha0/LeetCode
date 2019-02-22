@@ -12,27 +12,31 @@ namespace TwoSum
             Console.WriteLine("Hello World!");
         }
         //Solution 1
-        //public int[] TwoSum(int[] nums, int target)
-        //{
-        //    IDictionary<int, int> numIndexDic = new Dictionary<int, int>();
-        //    for (int i = 0; i < nums.Length; i++)
-        //    {
-        //        numIndexDic[nums[i]] = i;
-        //    }
+        public int[] TwoSum(int[] nums, int target)
+        {
+            IDictionary<int, int> numIndexDic = new Dictionary<int, int>();
+            //记录 值-下标 到字典中
+            for (int i = 0; i < nums.Length; i++)
+            {
+                numIndexDic[nums[i]] = i;
+            }
 
-        //    for (int i = 0; i < nums.Length; i++)
-        //    {
-        //        int complement = target - nums[i];
-        //        if (numIndexDic.ContainsKey(complement) && numIndexDic[complement] != i)
-        //        {
-        //            return new[] { i, numIndexDic[complement] };
-        //        }
-        //    }
-        //    throw new Exception();
-        //}
+            for (int i = 0; i < nums.Length; i++)
+            {
+                //差值，第二个数
+                int complement = target - nums[i];
+                //字典中已存在第二个值
+                if (numIndexDic.ContainsKey(complement) && numIndexDic[complement] != i)
+                {
+                    //第一个值下标，查到的第二个值下标
+                    return new[] { i, numIndexDic[complement] };
+                }
+            }
+            throw new Exception();
+        }
 
         //Solution 2
-        public int[] TwoSum(int[] nums, int target)
+        public int[] TwoSum2(int[] nums, int target)
         {
             IDictionary<int, int> numIndexDic = new Dictionary<int, int>();
             for (int i = 0; i < nums.Length; i++)
