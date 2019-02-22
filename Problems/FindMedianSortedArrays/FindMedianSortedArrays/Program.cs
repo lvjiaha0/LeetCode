@@ -42,20 +42,24 @@ namespace FindMedianSortedArrays
             //总数为奇数
             bool isOdd = (length1 + length2) % 2 != 0;
             double resIndex = (length1 + length2) / 2.0;
-            int tempIndex = -1;
-            int[] combinedArray = new int[(int)(resIndex + 1)];
+            
+            //两Array Pop出来的值按顺序排列得到的合并Array，长度只需大于中位数index即可
+            //？？？优化内存，考虑缩小合并Array的Size，最大为2
+            int[] combinedArray = new int[(int)(resIndex + 1)]; 
 
+            int tempIndex = -1;
             int curr1 = 0;
             int curr2 = 0;
 
             while (true)
             {
                 tempIndex += 1;
-                if (tempIndex > resIndex)
+                if (tempIndex > resIndex)//已经获取到有效数据，后面的不需要了，退出循环
                 {
                     break;
                 }
 
+                //判断小值在哪出的逻辑，注意一些边界值
                 bool smallInNums1 = false;
                 if (length1 == 0)
                 {
@@ -78,6 +82,7 @@ namespace FindMedianSortedArrays
                     smallInNums1 = true;
                 }
 
+                //每一轮，寻找小值Append到合并Array中去
                 if (smallInNums1)
                 {
                     combinedArray[tempIndex] = nums1[curr1];
@@ -91,12 +96,12 @@ namespace FindMedianSortedArrays
 
             }
 
-            if (isOdd)
+            if (isOdd)//如果总数为奇数
             {
                 double res = combinedArray[(int)Math.Ceiling(resIndex - 1)];
                 return res;
             }
-            else
+            else//如何总数为偶数，则为平均值
             {
                 int pre = combinedArray[(int)resIndex - 1];
                 int last = combinedArray[(int)resIndex];
