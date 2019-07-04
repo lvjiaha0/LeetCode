@@ -90,7 +90,7 @@ namespace MyAtoi
                     }
                     else if (Char.IsNumber(c))
                     {
-                        res = res * 10 + Char.GetNumericValue(c);
+                        res = Char.GetNumericValue(c);
                     }
                     else
                     {
@@ -123,6 +123,8 @@ namespace MyAtoi
             return (int)(isMinus ? -1 * res : res);
         }
 
+        //初步判断输入字符串是否可参与到整数转换
+        //考虑到整数转换过程中会有重复判断，消耗性能，所以未使用
         public static bool IsValidString(string str)
         {
             if (string.IsNullOrWhiteSpace(str))
