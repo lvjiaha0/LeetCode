@@ -67,7 +67,6 @@ namespace MergeTwoLinkedLists
 
     }
 
-
     public class ListNode
     {
         public ListNode(int val)
