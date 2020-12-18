@@ -155,10 +155,13 @@ namespace IntToRoman
                     var count = num / item.Item1;
                     var remain = num % item.Item1;
 
+                    //Repeat count times
                     for (int i = 0; i < count; i++)
                     {
                         res += item.Item2;
                     }
+
+                    //number is the rest
                     num = remain;
                 }
             }
