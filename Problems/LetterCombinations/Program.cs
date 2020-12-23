@@ -25,6 +25,7 @@ namespace LetterCombinations
             Console.WriteLine("Hello World!");
         }
 
+        
         public static IList<string> LetterCombinations(string digits)
         {
             Dictionary<char, string> dict = new Dictionary<char, string>()
@@ -50,6 +51,12 @@ namespace LetterCombinations
             return result;
         }
 
+        /// <summary>
+        /// 回溯算法，笛卡尔积穷举所有解
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="level"></param>
+        /// <param name="result"></param>
         private static void Descartes(List<string> source, int level, List<string> result)
         {
             if (level < source.Count - 1)
