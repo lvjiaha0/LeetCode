@@ -43,17 +43,18 @@ namespace ClimbingStairs
         //通过手算，只管感受就是斐波那契数列，同上
         public static int ClimbStairs(int n)
         {
+            //直接返回
+            if (n == 1) return 1;
+            if (n == 2) return 2;
+
             var fibonacci = new int[n];
             fibonacci[0] = 1;
             fibonacci[1] = 2;
-            if (n > 2)
+            for (int i = 2; i < n; i++)
             {
-                for (int i = 2; i < n; i++)
-                {
-                    //斐波那契数列
-                    // dp[n] = dp[n - 1] + dp[n - 2]
-                    fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
-                }
+                //斐波那契数列
+                // dp[n] = dp[n - 1] + dp[n - 2]
+                fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
             }
             return fibonacci[n - 1];
         }
