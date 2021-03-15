@@ -24,6 +24,7 @@ namespace ImplementStrstr
         {
             var a = StrStr("hello", "ll");//2
             var b = StrStr("aaaaa", "bba");//-1
+            var c = StrStr("a", "a");//0
             Console.WriteLine("Hello World!");
         }
 
@@ -33,8 +34,9 @@ namespace ImplementStrstr
         {
             var haystackLength = haystack.Length;
             var needleLength = needle.Length;
+            if (needleLength == 0) return 0;
 
-            for (int start = 0; start < haystackLength - needleLength; start++)
+            for (int start = 0; start <= haystackLength - needleLength; start++)
             {
                 if (haystack.Substring(start, needleLength) == needle)
                 {
