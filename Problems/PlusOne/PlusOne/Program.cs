@@ -37,7 +37,8 @@ namespace PlusOne
             Console.WriteLine("Hello World!");
         }
 
-
+        //最后一位加1，取余，判断跳出
+        //否则倒数第二位继续加1
         public static int[] PlusOne(int[] digits)
         {
             for (int i = digits.Length - 1; i >= 0; i--)
